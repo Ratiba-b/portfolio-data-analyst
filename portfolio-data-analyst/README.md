@@ -2,7 +2,7 @@
 
 Analyse de données (formation Business Intelligence Analyst, OpenClassrooms) et product management (alternance chez Komeet).
 
-**Contact :** _à ajouter : e-mail et LinkedIn_
+**Contact :** e-mail Ratiba.benzer@gmail.com et LinkedIn : https://www.linkedin.com/in/ratiba-b-5695a8194/?skipRedirect=true&contentTrackingId=Kr0YlnlBREeUQJMRnlewxg%3D%3D&viewName=premium-nav-upsell-text&upsellOrderOrigin=Tracking%3Av1%3Apremium_nav_upsell_text%3ANav%3AIn-Product
 
 Ce dépôt réunit le code et les livrables de mes projets, classés par pertinence pour un poste d'analyste de données. Les scénarios (Bottleneck, Les Plus Beaux Logis de Paris, Primero Bank) sont des cas d'école fictifs. Les chiffres cités viennent des livrables de chaque dossier.
 

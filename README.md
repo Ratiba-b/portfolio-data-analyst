@@ -2,7 +2,7 @@
 
 Analyse de données (formation Business Intelligence Analyst, OpenClassrooms) et product management (alternance chez Komeet).
 
-**Contact :** e-mail Ratiba.benzer@gmail.com et LinkedIn https://www.linkedin.com/in/ratiba-b-5695a8194/?skipRedirect=true&contentTrackingId=Kr0YlnlBREeUQJMRnlewxg%3D%3D&viewName=premium-nav-upsell-text&upsellOrderOrigin=Tracking%3Av1%3Apremium_nav_upsell_text%3ANav%3AIn-Product
+**Contact :** _à ajouter : e-mail et LinkedIn_
 
 Ce dépôt réunit le code et les livrables de mes projets, classés par pertinence pour un poste d'analyste de données. Les scénarios (Bottleneck, Les Plus Beaux Logis de Paris, Primero Bank) sont des cas d'école fictifs. Les chiffres cités viennent des livrables de chaque dossier.
 
@@ -10,22 +10,25 @@ Ce dépôt réunit le code et les livrables de mes projets, classés par pertine
 
 | # | Projet | Outils | Dossier |
 |---|--------|--------|---------|
-| 1 | Bottleneck : nettoyage et analyse du stock, notebook amélioré avec l'IA | Python, pandas, plotly, seaborn, Pandera | [01-bottleneck-stock-amelioration-ia](01-bottleneck-stock-amelioration-ia) |
+| 1 | Bottleneck : contrôle qualité automatique écrit par l'IA (amélioration du projet 6) | Python, pandas, scikit-learn, assistant IA | [01-bottleneck-stock-amelioration-ia](01-bottleneck-stock-amelioration-ia) |
 | 2 | Bottleneck : rapport d'analyse et tableau de bord Power BI | SQLite, Power Query, DAX, Power BI | [02-bottleneck-power-bi](02-bottleneck-power-bi) |
 | 3 | Prix immobiliers à Paris : régression et KMeans | Python, scipy, scikit-learn | [03-paris-immobilier-python](03-paris-immobilier-python) |
 | 4 | Primero Bank : analyse du churn | Excel (tableaux croisés dynamiques) | [04-primero-bank-excel](04-primero-bank-excel) |
 | 5 | Base de données d'assurance et 12 requêtes | SQL, MySQL Workbench, dbdiagram | [05-sql-assurance](05-sql-assurance) |
-| 6 | Sanitoral : tableau de bord Power BI | Power BI, DAX | [06-sanitoral-power-bi](06-sanitoral-power-bi) _(à compléter)_ |
+| 7 | UOI Games : quel premier jeu triple A lancer ? | Python, scipy, Google Forms | [07-uoi-games-etude-de-marche](07-uoi-games-etude-de-marche) |
+| 6 | Sanitoral : tableau de bord Power BI de suivi de projets | Power BI, DAX | [06-sanitoral-power-bi](06-sanitoral-power-bi) |
+| 8 | BestMarket : satisfaction client et NPS | SQL | [08-bestmarket-sql](08-bestmarket-sql) |
+| 9 | Dev'Immediat : anonymisation RGPD d'un CRM | Power Query, RGPD | [09-rgpd-dev-immediat](09-rgpd-dev-immediat) |
 
 Mon travail chez Komeet (alerte de liste d'attente, analyses Metabase) n'est pas publié ici pour des raisons de confidentialité.
 
-## 1. Bottleneck : nettoyage et analyse du stock (amélioré avec l'IA)
+## 1. Bottleneck : contrôle qualité automatique écrit par l'IA (amélioration du projet 6)
 
-- **Besoin :** rapprocher 3 sources (ERP, web, liaison), corriger les erreurs, analyser ventes, stock et rentabilité d'octobre.
-- **Démarche :** contrôles automatiques (règles pandas et Pandera comparées), jointures vérifiées, comparaisons IQR / Z-score, Pearson / Spearman, taux de marge moyen / marge en euros pondérée, revue du notebook par un assistant IA dont chaque affirmation est vérifiée par exécution.
-- **Résultats :** CA d'octobre 153 573,1 € TTC ; stock de 17 822 bouteilles valorisé 298 627,66 € ; 68 produits en stock sans vente web (36 564,89 €), dont 65 non référencés sur le site ; le vin représente 85,0 % de la marge ; en Spearman, stock/ventes 0,76 et prix/ventes -0,69.
-- **Limites :** un seul mois de ventes ; hypothèses (ventes d'octobre, prix TTC avec TVA 20 %) à confirmer avec le métier.
-- **Voir :** [notebook](01-bottleneck-stock-amelioration-ia/notebook_bottleneck_ameliore.ipynb) et [documentation de la démarche](01-bottleneck-stock-amelioration-ia/documentation_demarche.pdf).
+- **Besoin :** dans le projet 6, les erreurs des fichiers ERP, web et liaison étaient cherchées à la main. Le contrôle les détecte automatiquement avant chaque analyse.
+- **Démarche :** Claude a écrit 4 programmes (2 demandes, 2 essais chacune), vérifiés ligne par ligne face aux 8 types d'erreurs du projet 6, et comparés à Isolation Forest et à la méthode IQR.
+- **Résultats :** un seul programme (A1) retrouve les 8 types ; le même prompt relancé en rate 2 ; Isolation Forest et IQR retrouvent 5 à 7 erreurs chiffrées sur 9. A1 est retenu et figé.
+- **Impact :** des lignes image portent d'autres ventes que la fiche produit : CA d'octobre de 143 505,1 € au lieu de 153 573,1 €, écart à arbitrer avec le métier.
+- **Voir :** [dossier du projet](01-bottleneck-stock-amelioration-ia), [essais IA](01-bottleneck-stock-amelioration-ia/essais_ia).
 
 ## 2. Bottleneck : rapport d'analyse et tableau de bord Power BI
 
@@ -33,7 +36,7 @@ Mon travail chez Komeet (alerte de liste d'attente, analyses Metabase) n'est pas
 - **Démarche :** comparaison de 3 solutions d'extraction (connexion directe, export CSV, ETL) ; choix de la connexion directe avec nettoyage dans Power Query ; tableau de bord de 7 pages et 16 mesures DAX.
 - **Résultats :** CA hors promotion 2 237 005 € ; marge 1 052 773 € (47,06 %) ; 88 133 quantités vendues ; rotation des stocks 2,37.
 - **Recommandations :** répercuter la hausse des prix d'achat (+7,0 % contre +3,6 % pour les prix de vente) ; développer le sans alcool avec les bons produits ; cibler les promotions (marge de 31,7 % contre 47,1 % hors promotion).
-- **Voir :** [rapport](02-bottleneck-power-bi/rapport_analyse.docx) et [modèle du tableau de bord](02-bottleneck-power-bi/modele_tableau_de_bord.pbit).
+- **Voir :** [rapport](02-bottleneck-power-bi/rapport_analyse.docx), [tableau de bord en PDF](02-bottleneck-power-bi/tableau_de_bord.pdf), [présentation](02-bottleneck-power-bi/presentation_soutenance.pdf) et [modèle Power BI](02-bottleneck-power-bi/modele_tableau_de_bord.pbit).
 
 ## 3. Prix immobiliers à Paris
 
@@ -55,6 +58,35 @@ Mon travail chez Komeet (alerte de liste d'attente, analyses Metabase) n'est pas
 - **Besoin :** construire une base relationnelle à partir de 2 fichiers CSV (38 916 et 30 335 lignes importées) et l'analyser.
 - **Démarche :** exploration sous Excel, dictionnaire de données, schéma relationnel, import dans MySQL, 12 requêtes (jointures, COUNT, AVG, GROUP BY, HAVING).
 - **Voir :** [document technique](05-sql-assurance/document_technique.pdf), [requêtes et résultats](05-sql-assurance/liste_requetes_resultats.pdf), [méthodologie](05-sql-assurance/methodologie.pdf).
+
+## UOI Games : quel premier jeu triple A lancer ?
+
+- **Besoin :** UOI Games (cas d'école) n'a jamais lancé de triple A ; quel premier jeu lancer pour maximiser ses chances de succès ?
+- **Données :** 3 fichiers fournis (ventes 1980-2016, notes de 440 896 jeux, ventes de consoles), études publiées (Newzoo, SELL…), questionnaire Google Forms (43 réponses dont 40 joueurs).
+- **Résultats :** l'Action fait environ 30 % des ventes 2010-2016 mais c'est le genre le plus encombré ; notes critiques et ventes évoluent ensemble (Spearman 0,35, p < 0,001) ; concept testé noté 3,7 sur 5.
+- **Recommandation :** une nouvelle licence d'action-aventure narrative, sur PC, PS5 et Xbox Series, à 59,99 € ; de 2,7 à 8 millions de ventes la première année (jeux comparables).
+- **Limites :** questionnaire non représentatif ; données fournies arrêtées en 2016-2020 ; prévision = ordre de grandeur.
+- **Voir :** [présentation](07-uoi-games-etude-de-marche/presentation.pptx), [notebook](07-uoi-games-etude-de-marche/notebook.ipynb), [version HTML](07-uoi-games-etude-de-marche/notebook.html). Les deux gros fichiers fournis (.xlsb) ne sont pas publiés (taille).
+
+## Sanitoral : tableau de bord Power BI de suivi de projets
+
+- **Besoin :** suivre des projets menés dans plusieurs pays (coûts, délais, livrables).
+- **Démarche :** 7 tables, 4 pages (carte, analyse des performances, Gantt), 8 mesures DAX, sécurité par rôles (directeur général, pays, régional).
+- **Voir :** [modèle Power BI](06-sanitoral-power-bi/modele_tableau_de_bord.pbit) (sans les données).
+
+## BestMarket : satisfaction client et NPS avec SQL
+
+- **Besoin :** centraliser les retours clients multicanaux et suivre le NPS de façon fiable.
+- **Résultats :** 70,5 % des clients recommandent l'enseigne ; 39 magasins sur 83 sous la moyenne ; Drive le moins bien noté (7,94 sur 10).
+- **Limite :** le NPS par canal donne la même valeur pour les trois canaux.
+- **Voir :** [expression des besoins](08-bestmarket-sql/expression_des_besoins.docx), [présentation](08-bestmarket-sql/presentation.pdf).
+
+## Dev'Immediat : anonymisation RGPD d'un CRM
+
+- **Besoin :** continuer l'analyse commerciale pendant une sanction de la CNIL, sans données personnelles.
+- **Démarche :** suppression des données personnelles, sensibles et tarifaires dans Power Query, tranches d'âge et de revenus, 5 recommandations RGPD.
+- **Limite :** les identifiants du fichier final sont encodés en base64, donc réversibles ; le fichier n'est pas publié.
+- **Voir :** [rapport](09-rgpd-dev-immediat/rapport_traitement.pdf), [recommandations](09-rgpd-dev-immediat/recommandations_rgpd.pdf).
 
 ## Mon système de veille
 
